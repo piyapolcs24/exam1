@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= count %>
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <input type="search" class="form-control" onkeyup="myFunction()" id="input-search">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody id="cateID">
+      <% for(var i=0 ; i < categories.length ; i++) { %>
+        <tr>
+          <td>
+            <%= categories[i] %>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+</body>
+<script>
+  function myFunction() {
+    input = document.getElementById("input-search");
+    filter = input.value.toUpperCase();
+    thead = document.getElementById("cateID");
+    tr = thead.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+</script>
+
+</html>
